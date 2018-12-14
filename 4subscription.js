@@ -5,11 +5,11 @@ class Store {
 		this._callbacks = []
 	}
 
-	get state() {								// доступ к значению хранилища
+	get state() {								// === getState
 		return this._state
 	}
 
-	update( action ) {				// обновление хранилища, только и всего
+	update( action ) {				// === dispatch
 		this._state = this._updateState( this._state, action )
 		this._callbacks.forEach( callback => callback() ) // уведомляем об изменении
 	}
@@ -38,3 +38,9 @@ store.update( incrementAction )
 unsubscribe()
 store.update( decrementAction )
 store.update( {} )
+
+// subscribe - метод, с помощью которого обьект получает
+// уведомление об изменении хранилища(общего state)
+
+// unsubscribe - отрабатывает, когда пропадает обьект
+// будучи имеющий подписку(subscribe) на изменения
